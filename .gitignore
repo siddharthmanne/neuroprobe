@@ -1,0 +1,25 @@
+.venv*/
+
+logs/
+eval_results*/
+data/
+
+# Large data directories
+braintreebank/
+braintreebank_zip/
+
+# macOS system files
+.DS_Store
+
+**/__pycache__
+*.egg-info/
+
+# do not commit figures
+**/*.png
+**/*.pdf
+**/*.jpg
+
+# do not commit dist
+dist/
+
+.env

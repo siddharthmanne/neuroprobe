@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuroprobe Benchmark: Evaluating iEEG foundation models</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-content">
+                <div class="logo logo-font">Neuroprobe</div>
+                <div class="nav-links">
+                    <!-- <a href="#about">About</a> -->
+                    <a href="#leaderboard">Leaderboard</a>
+                    <a href="https://www.arxiv.org/abs/2509.21671">Paper</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="logo-font">Neuroprobe</h1>
+                <p class="subtitle">Benchmark for evaluating decoding capabilities of <b>iEEG foundation models</b>.</p>
+                <div class="hero-buttons">
+                    <a href="https://www.arxiv.org/abs/2509.21671" class="button primary">
+                        <i class="fas fa-file-alt"></i> Paper
+                    </a>
+                    <a href="https://github.com/azaho/neuroprobe" class="button secondary" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a class="submit-button" href="https://github.com/azaho/neuroprobe/blob/main/SUBMIT.md">
+                        <i class="fas fa-upload"></i> Submit
+                    </a>
+                </div>
+                <!-- <div class="tech-badges">
+                    <img alt="Python" src="https://img.shields.io/badge/Python-3.8+-1f425f.svg?color=purple">
+                    <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg">
+                    <img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg">
+                </div> -->
+            </div>
+            <div class="hero-animation">
+                <img src="https://azaho.org/bfm_join/brain_gif.gif" alt="Brain Activity Animation">
+            </div>
+        </section>
+
+        <!-- <section id="about" class="about">
+            <h2>About</h2>
+            <div class="abstract">
+                <h3>Abstract</h3>
+                <p>We present Neuroprobe, a benchmark for understanding how the brain processes information across multiple tasks. Neuroprobe analyzes intracranial recordings during naturalistic stimuli using techniques from modern natural language processing. By probing neural responses across many tasks simultaneously, Neuroprobe aims to reveal the functional organization of the brain and relationships between different cognitive processes.</p>
+            </div>
+        </section> -->
+
+        <section id="leaderboard" class="leaderboard">
+            <div class="leaderboard-tabs">
+                <button class="tab-button active" style="text-decoration: none;" data-tab="population_cross_session">
+                    <i class="fas fa-clock"></i> Cross-Session
+                </button>
+                <button class="tab-button" style="text-decoration: none;" data-tab="population_cross_subject">
+                    <i class="fas fa-users"></i> Cross-Subject
+                </button>
+                <!-- <button class="tab-button" data-tab="single">Single Electrode</button> -->
+            </div>
+            
+            <div class="leaderboard-content">
+                <div class="tab-content active" id="population_cross_session">
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Model</th>
+                                    <th>Author</th>
+                                    <th>Organization</th>
+                                    <th>Date</th>
+                                    <th><b>Overall AUROC</b></th>
+                                    <th>Sentence Onset</th>
+                                    <th>Speech</th>
+                                    <th>Volume</th>
+                                    <th>Delta Volume</th>
+                                    <th>Voice Pitch</th>
+                                    <th>Word Position</th>
+                                    <th>Inter-word Gap</th>
+                                    <th>GPT-2 Surprisal</th>
+                                    <th>Head Word Position</th>
+                                    <th>Part of Speech</th>
+                                    <th>Word Length</th>
+                                    <th>Global Optical Flow</th>
+                                    <th>Local Optical Flow</th>
+                                    <th>Frame Brightness</th>
+                                    <th>Number of Faces</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="rank-badge gold">1</span></td>
+                                    <td>Linear (Laplacian re-referencing + spectrogram)</td>
+                                    <td>Andrii Zahorodnii</td>
+                                    <td>MIT</td>
+                                    <td>2025-09-25</td>
+                                    <td>0.648</td>
+                                    <td>0.904</td>
+                                    <td>0.889</td>
+                                    <td>0.714</td>
+                                    <td>0.734</td>
+                                    <td>0.579</td>
+                                    <td>0.691</td>
+                                    <td>0.590</td>
+                                    <td>0.593</td>
+                                    <td>0.580</td>
+                                    <td>0.610</td>
+                                    <td>0.609</td>
+                                    <td>0.595</td>
+                                    <td>0.578</td>
+                                    <td>0.535</td>
+                                    <td>0.525</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge silver">2</span></td>
+                                    <td>Linear (spectrogram)</td>
+                                    <td>Andrii Zahorodnii</td>
+                                    <td>MIT</td>
+                                    <td>2025-09-25</td>
+                                    <td>0.626</td>
+                                    <td>0.861</td>
+                                    <td>0.849</td>
+                                    <td>0.727</td>
+                                    <td>0.702</td>
+                                    <td>0.564</td>
+                                    <td>0.648</td>
+                                    <td>0.560</td>
+                                    <td>0.567</td>
+                                    <td>0.557</td>
+                                    <td>0.564</td>
+                                    <td>0.564</td>
+                                    <td>0.580</td>
+                                    <td>0.576</td>
+                                    <td>0.546</td>
+                                    <td>0.520</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge bronze">3</span></td>
+                                    <td>BrainBERT (frozen; Wang et al. 2023)</td>
+                                    <td>-</td>
+                                    <td>MIT</td>
+                                    <td>2025-09-25</td>
+                                    <td>0.581</td>
+                                    <td>0.743</td>
+                                    <td>0.631</td>
+                                    <td>0.572</td>
+                                    <td>0.692</td>
+                                    <td>0.509</td>
+                                    <td>0.661</td>
+                                    <td>0.571</td>
+                                    <td>0.580</td>
+                                    <td>0.572</td>
+                                    <td>0.556</td>
+                                    <td>0.559</td>
+                                    <td>0.527</td>
+                                    <td>0.534</td>
+                                    <td>0.506</td>
+                                    <td>0.497</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Linear (raw voltage)</td>
+                                    <td>Andrii Zahorodnii</td>
+                                    <td>MIT</td>
+                                    <td>2025-09-25</td>
+                                    <td>0.576</td>
+                                    <td>0.728</td>
+                                    <td>0.611</td>
+                                    <td>0.564</td>
+                                    <td>0.707</td>
+                                    <td>0.529</td>
+                                    <td>0.664</td>
+                                    <td>0.554</td>
+                                    <td>0.561</td>
+                                    <td>0.537</td>
+                                    <td>0.569</td>
+                                    <td>0.558</td>
+                                    <td>0.528</td>
+                                    <td>0.523</td>
+                                    <td>0.494</td>
+                                    <td>0.509</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>BrainBERT (untrained, frozen)</td>
+                                    <td>-</td>
+                                    <td>MIT</td>
+                                    <td>2025-09-25</td>
+                                    <td>0.574</td>
+                                    <td>0.724</td>
+                                    <td>0.603</td>
+                                    <td>0.560</td>
+                                    <td>0.680</td>
+                                    <td>0.508</td>
+                                    <td>0.664</td>
+                                    <td>0.564</td>
+                                    <td>0.578</td>
+                                    <td>0.573</td>
+                                    <td>0.553</td>
+                                    <td>0.561</td>
+                                    <td>0.521</td>
+                                    <td>0.529</td>
+                                    <td>0.500</td>
+                                    <td>0.498</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>PopulationTransformer (Chau et al. 2024)</td>
+                                    <td>-</td>
+                                    <td>MIT</td>
+                                    <td>2025-09-25</td>
+                                    <td>0.566</td>
+                                    <td>0.774</td>
+                                    <td>0.716</td>
+                                    <td>0.574</td>
+                                    <td>0.646</td>
+                                    <td>0.510</td>
+                                    <td>0.559</td>
+                                    <td>0.531</td>
+                                    <td>0.556</td>
+                                    <td>0.524</td>
+                                    <td>0.502</td>
+                                    <td>0.523</td>
+                                    <td>0.529</td>
+                                    <td>0.528</td>
+                                    <td>0.504</td>
+                                    <td>0.512</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
+                
+                <div class="tab-content" id="population_cross_subject">
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Model</th>
+                                    <th>Author</th>
+                                    <th>Organization</th>
+                                    <th>Date</th>
+                                    <th><b>Overall AUROC</b></th>
+                                    <th>Sentence Onset</th>
+                                    <th>Speech</th>
+                                    <th>Volume</th>
+                                    <th>Delta Volume</th>
+                                    <th>Voice Pitch</th>
+                                    <th>Word Position</th>
+                                    <th>Inter-word Gap</th>
+                                    <th>GPT-2 Surprisal</th>
+                                    <th>Head Word Position</th>
+                                    <th>Part of Speech</th>
+                                    <th>Word Length</th>
+                                    <th>Global Optical Flow</th>
+                                    <th>Local Optical Flow</th>
+                                    <th>Frame Brightness</th>
+                                    <th>Number of Faces</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="rank-badge gold">1</span></td>
+                                    <td>Linear (Laplacian re-referencing + spectrogram)</td>
+                                    <td>Andrii Zahorodnii</td>
+                                    <td>MIT</td>
+                                    <td>2025-09-25</td>
+                                    <td>0.539</td>
+                                    <td>0.673</td>
+                                    <td>0.642</td>
+                                    <td>0.527</td>
+                                    <td>0.568</td>
+                                    <td>0.505</td>
+                                    <td>0.571</td>
+                                    <td>0.515</td>
+                                    <td>0.508</td>
+                                    <td>0.521</td>
+                                    <td>0.508</td>
+                                    <td>0.508</td>
+                                    <td>0.515</td>
+                                    <td>0.513</td>
+                                    <td>0.499</td>
+                                    <td>0.508</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge silver">2</span></td>
+                                    <td>Linear (spectrogram)</td>
+                                    <td>Andrii Zahorodnii</td>
+                                    <td>MIT</td>
+                                    <td>2025-09-25</td>
+                                    <td>0.528</td>
+                                    <td>0.621</td>
+                                    <td>0.585</td>
+                                    <td>0.530</td>
+                                    <td>0.555</td>
+                                    <td>0.505</td>
+                                    <td>0.552</td>
+                                    <td>0.508</td>
+                                    <td>0.510</td>
+                                    <td>0.511</td>
+                                    <td>0.509</td>
+                                    <td>0.509</td>
+                                    <td>0.508</td>
+                                    <td>0.506</td>
+                                    <td>0.514</td>
+                                    <td>0.496</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge bronze">3</span></td>
+                                    <td>BrainBERT (untrained, frozen)</td>
+                                    <td>-</td>
+                                    <td>MIT</td>
+                                    <td>2025-09-25</td>
+                                    <td>0.527</td>
+                                    <td>0.585</td>
+                                    <td>0.537</td>
+                                    <td>0.524</td>
+                                    <td>0.590</td>
+                                    <td>0.505</td>
+                                    <td>0.574</td>
+                                    <td>0.513</td>
+                                    <td>0.522</td>
+                                    <td>0.530</td>
+                                    <td>0.517</td>
+                                    <td>0.509</td>
+                                    <td>0.503</td>
+                                    <td>0.501</td>
+                                    <td>0.502</td>
+                                    <td>0.500</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>PopulationTransformer (Chau et al. 2024)</td>
+                                    <td>-</td>
+                                    <td>MIT</td>
+                                    <td>2025-09-25</td>
+                                    <td>0.526</td>
+                                    <td>0.638</td>
+                                    <td>0.594</td>
+                                    <td>0.526</td>
+                                    <td>0.573</td>
+                                    <td>0.509</td>
+                                    <td>0.503</td>
+                                    <td>0.519</td>
+                                    <td>0.522</td>
+                                    <td>0.509</td>
+                                    <td>0.498</td>
+                                    <td>0.498</td>
+                                    <td>0.503</td>
+                                    <td>0.500</td>
+                                    <td>0.502</td>
+                                    <td>0.494</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>BrainBERT (frozen; Wang et al. 2023)</td>
+                                    <td>-</td>
+                                    <td>MIT</td>
+                                    <td>2025-09-25</td>
+                                    <td>0.522</td>
+                                    <td>0.582</td>
+                                    <td>0.537</td>
+                                    <td>0.521</td>
+                                    <td>0.574</td>
+                                    <td>0.507</td>
+                                    <td>0.549</td>
+                                    <td>0.510</td>
+                                    <td>0.511</td>
+                                    <td>0.524</td>
+                                    <td>0.509</td>
+                                    <td>0.504</td>
+                                    <td>0.501</td>
+                                    <td>0.498</td>
+                                    <td>0.506</td>
+                                    <td>0.501</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Linear (raw voltage)</td>
+                                    <td>Andrii Zahorodnii</td>
+                                    <td>MIT</td>
+                                    <td>2025-09-25</td>
+                                    <td>0.510</td>
+                                    <td>0.539</td>
+                                    <td>0.508</td>
+                                    <td>0.513</td>
+                                    <td>0.533</td>
+                                    <td>0.503</td>
+                                    <td>0.539</td>
+                                    <td>0.511</td>
+                                    <td>0.510</td>
+                                    <td>0.504</td>
+                                    <td>0.495</td>
+                                    <td>0.502</td>
+                                    <td>0.500</td>
+                                    <td>0.500</td>
+                                    <td>0.493</td>
+                                    <td>0.501</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+<!--             
+            <div class="submit-section">
+                <a class="submit-button" href="https://github.com/azaho/neuroprobe">
+                    <i class="fas fa-upload"></i> Submit
+                </a>
+            </div> -->
+        <!-- </section>
+
+        <section id="paper" class="paper"> -->
+            <div class="paper-content">
+                <div class="paper-info">
+                    <h3>Neuroprobe: Evaluating Intracranial Brain Responses to Naturalistic Stimuli</h3>
+                    <p class="authors">By Andrii Zahorodnii¹²*, Christopher Wang¹*, Bennett Stankovits¹*, Charikleia Moraitaki¹, Geeling Chau³, Andrei Barbu¹, Boris Katz¹, Ila R Fiete¹²</p>
+                    <p class="affiliations">¹MIT CSAIL, CBMM | ²MIT McGovern Institute | ³Caltech | *Equal contribution</p>
+                    <div class="paper-links">
+                        <a href="https://www.arxiv.org/abs/2509.21671" class="button primary">
+                            <i class="fas fa-file-pdf"></i> Download PDF
+                        </a>
+                        <a href="https://github.com/azaho/neuroprobe" class="button secondary" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                    <div class="citation">
+                        <h4>Citation</h4>
+                        <p>If you use Neuroprobe in your work, please cite our paper:</p>
+                        <pre><code>@misc{neuroprobe,
+      title={Neuroprobe: Evaluating Intracranial Brain Responses to Naturalistic Stimuli}, 
+      author={Andrii Zahorodnii and Christopher Wang and Bennett Stankovits and Charikleia Moraitaki and Geeling Chau and Andrei Barbu and Boris Katz and Ila R Fiete},
+      year={2025},
+      eprint={2509.21671},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2509.21671}, 
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Neuroprobe. All rights reserved.</p>
+            <p>Licensed under the MIT License</p>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html> 
